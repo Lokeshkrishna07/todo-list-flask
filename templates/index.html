@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Your Tasks</h1>
+<form action="/add" method="POST" class="task-form">
+    <input type="text" name="todo" placeholder="Add a new task" required>
+    <button type="submit">Add</button>
+</form>
+
+<ul class="todo-list">
+    {% for todo in todos %}
+    <li>
+        <span>{{ todo['todo'] }}</span>
+        <div class="actions">
+            <a href="/edit/{{ todo.doc_id }}" class="edit-btn">Edit</a>
+            <a href="/delete/{{ todo.doc_id }}" class="delete-btn">Delete</a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
